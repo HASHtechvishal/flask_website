@@ -1,55 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta content="width=device-width, initial-scale=1.0" name="viewport">
-      <title>Jobs-world - HOME</title>
-      <meta content="" name="description">
-      <meta content="" name="keywords">
-      <!-- Favicons -->
-      <link href="static/assets/img/favicon.png" rel="icon">
-      <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-      <!-- Vendor CSS Files -->
-      <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <link href="static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-      <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-      <link href="static/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-      <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
-      <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
-      <!-- Template Main CSS File -->
-      <link href="static/assets/css/style.css" rel="stylesheet">
-      <!-- =======================================================
-         * Template Name: BizLand - v1.1.0
-         * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
-         * Author: BootstrapMade.com
-         * License: https://bootstrapmade.com/license/
-         ======================================================== -->
-   </head>
-   <body>
+      {% include 'link_css.html' %}
       <!-- ======= Top Bar ======= -->
-      <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
-         <div class="container d-flex">
-            <div class="contact-info mr-auto">
-               <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-               <i class="icofont-phone"></i> +1 5589 55488 55
-            </div>
-            <div class="social-links">
-               <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-               <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-               <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-               <a href="#" class="skype"><i class="icofont-skype"></i></a>
-               <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
-            </div>
-         </div>
-      </div>
-      <!-- ======= Header ======= -->
-      <header id="header" class="fixed-top">
-         <div class="container d-flex align-items-center">
-            <h1 class="logo"><a href="index.html">Jobs-<span>world</span></a></h1>
-         </div>
-      </header>
+      {% include'header.html' %}
       <!-- End Header -->
       <!-- ======= Hero Section ======= -->
       <section id="hero" class="d-flex align-items-center">
@@ -104,22 +55,22 @@
                <div class="section-title">
                   <h2>Jobs</h2>
                   <h3>Jobs <span>openings</span></h3>
-                  <div class="border-bottom row" style="margin-bottom:16px;padding-bottom:8px;">
-                     <div class="col-10">
-                        <h4
-                           style="color:rgb(120,120,120); margin-bottom:4px;">
-                           <span>job['title']</span>
-                        </h4>
-                        <div>
-                           <b>Location:</b> job['location']
-                        </div>
-                        <div>
-                           <b>Salary:</b> job['salary']
-                        </div>
+               </div>
+               <div class="border-bottom row" style="margin-bottom:16px;padding-bottom:8px;">
+                  <div class="col-10">
+                     <h4
+                        style="color:rgb(120,120,120); margin-bottom:4px;">
+                        <span>markiting</span>
+                     </h4>
+                     <div>
+                        <b>Location:</b> delhi
                      </div>
-                     <div class="col-2 padding-right:16px">
-                        <a href="" type="button" class="btn btn-outline-primary float-right align-middle" >Apply</a>
+                     <div>
+                        <b>Salary:</b> 50000
                      </div>
+                  </div>
+                  <div class="col-2 padding-right:16px">
+                     <a href="/job/apply" type="button" class="btn btn-outline-primary float-right align-middle" >Apply</a>
                   </div>
                </div>
             </div>
@@ -138,20 +89,7 @@
       </main>
       <!-- End #main -->
       <!-- ======= Footer ======= -->
-      <footer id="footer">
-         <div class="container py-4">
-            <div class="copyright">
-               &copy; Copyright <strong><span>Jobs-world</span> 2020-2023 </strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-               <!-- All the links in the footer should remain intact. -->
-               <!-- You can delete the links only if you purchased the pro version. -->
-               <!-- Licensing information: https://bootstrapmade.com/license/ -->
-               <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
-               Designed by <a href="https://bootstrapmade.com/">HASHtech</a>
-            </div>
-         </div>
-      </footer>
+      {% include'footer.html' %}
       <!-- End Footer -->
       <div id="preloader"></div>
       <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
