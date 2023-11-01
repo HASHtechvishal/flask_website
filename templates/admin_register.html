@@ -166,7 +166,7 @@ html, body {
                     <div class="form-items">
                         <h3>Admin Register</h3>
                         <p>Fill in the data below.</p>
-                        <form class="requires-validation" action="/admin_register" method="POST" novalidate>
+                        <form class="requires-validation" action="/admin_register" method="POST" novalidate enctype="multipart/form-data">
 
                             <div class="col-md-12">
                                <input class="form-control" type="text" name="name" placeholder="Full Name" required>
@@ -181,11 +181,11 @@ html, body {
                                <div class="invalid-feedback">Mobile no field cannot be blank!</div>
                             </div>
 
-                            {#<div class="col-md-12">
+                            <div class="col-md-12">
                                <input class="form-control" type="file" name="img" placeholder="Enter Image" required>
                                <div class="valid-feedback">image field is valid!</div>
                                <div class="invalid-feedback">image no field cannot be blank!</div>
-                            </div>#}
+                            </div>
 
                             <div class="col-md-12">
                                 <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>

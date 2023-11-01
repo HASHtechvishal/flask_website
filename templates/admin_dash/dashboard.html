@@ -1,0 +1,17 @@
+<h1>dashboard</h1>
+
+<h3>email--{{ admin_dash.email }}</h3>
+<h3>name--{{ admin_dash.name }}</h3>
+<h3>mobile--{{ admin_dash.mobile }}</h3>
+<h3>password--{{ admin_dash.password }}</h3>
+<h3>status--{{ admin_dash.status }}</h3>
+<h3>image-- {% if (admin_dash.image) %}
+    <img src="{{ url_for('static', filename='/uploads/'+admin_dash.image) }}" alt="" style="height: 100%; width:30%">
+    {% else %}
+    <img src="" alt="" style="height: 100%; width:30%">
+    {% endif %}
+    {% if (admin_dash.image) %}
+    <a href="{{ url_for('delete', file_id=admin_dash.id) }}">delete</a>
+        <a href="{{ url_for('download', file_id=admin_dash.id) }}">download</a></h3>
+    {% endif %}
+<a href="/logout">Logout</a>
