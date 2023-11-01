@@ -5,6 +5,10 @@ from flask_mail import Mail, Message
 import bcrypt
 import os
 
+#middelware
+from middleware import auth, guest
+
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@127.0.0.1:8889/flask_web"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -58,6 +62,7 @@ def job_apply():
     return render_template('job_details.html')
 
 @app.route('/admin_register', methods = ['GET','POST'])
+#@guest   # with middeleware
 def admin_register():
     if request.method == 'POST':
         '''Add entry to the database'''
@@ -114,11 +119,12 @@ def admin_login():
 
 
 @app.route('/dashboard')
+@auth
 def dashboard():
-    if 'email' in session:
+    #if 'email' in session: #this code use without middlerware
         admin_dash = admins.query.filter_by(email=session['email']).first()
         return render_template('admin_dash/dashboard.html', admin_dash=admin_dash)
-    return redirect('/admin_login')
+    #return redirect('/admin_login')  #this code use without middlerware
 
 @app.route('/logout')
 def admin_logout():
