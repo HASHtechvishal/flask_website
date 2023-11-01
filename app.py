@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request, redirect, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 import bcrypt
 import os
 
@@ -8,7 +9,20 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@127.0.0.1:8889/flask_web"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["UPLOAD_FOLDER"] = 'static/uploads'
+
+#mail code
+
+app.config['MAIL_SERVER']='sandbox.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = '48a4bddcc0af2c'
+app.config['MAIL_PASSWORD'] = '485c6a0a1869ae'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+
+
 db = SQLAlchemy(app)
+mail = Mail(app)
 app.secret_key = 'secret_key'
 
 class admins(db.Model):
@@ -53,11 +67,25 @@ def admin_register():
         password = request.form['password']
         status = 1
 
-
+#image upload
         image = request.files['img']
         if image:
             filename = image.filename
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+#mail code
+        subject = "Test mail"
+        message_body = "this is a testing mail"
+
+        msg = Message(subject=subject, sender="vishalarora1087@gmail.com", recipients=["vishalarora1087@gmail.com", "hello"])
+        msg.body = message_body
+        mail.send(msg)
+
+        '''try:
+            mail.send(msg)
+            return "email send successfully!"
+        except Exception as e:
+            return "Error sending email : " + str(e)'''
 
         admin_entry = admins(name=name, mobile=mobile, image=filename, email=email, password=password, status=status)
         db.session.add(admin_entry)
@@ -87,7 +115,7 @@ def admin_login():
 
 @app.route('/dashboard')
 def dashboard():
-    if session['email']:
+    if 'email' in session:
         admin_dash = admins.query.filter_by(email=session['email']).first()
         return render_template('admin_dash/dashboard.html', admin_dash=admin_dash)
     return redirect('/admin_login')
