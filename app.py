@@ -5,7 +5,12 @@ from flask_mail import Mail, Message
 import bcrypt
 import os
 
-#middelware
+#form validation imports
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Email, ValidationError
+
+#middelware imports
 from middleware import auth, guest
 
 
@@ -28,6 +33,11 @@ app.config['MAIL_USE_SSL'] = False
 db = SQLAlchemy(app)
 mail = Mail(app)
 app.secret_key = 'secret_key'
+
+#form validation code
+class MyForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
 
 class admins(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -64,6 +74,7 @@ def job_apply():
 @app.route('/admin_register', methods = ['GET','POST'])
 #@guest   # with middeleware
 def admin_register():
+    form = MyForm()
     if request.method == 'POST':
         '''Add entry to the database'''
         name = request.form['name']
@@ -97,7 +108,7 @@ def admin_register():
         db.session.commit()
         return redirect('admin_login')
 
-    return render_template('admin_register.html')
+    return render_template('admin_register.html', form=form)
 
 @app.route('/admin_login', methods = ['GET', 'POST'])
 def admin_login():
